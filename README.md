@@ -17,7 +17,7 @@ npm install bitcore-payment-protocol
 ```
 
 
-There are many examples of how to use it on the developer guide [section for payment protocol](https://github.com/vinarmani/bitcore-payment-protocol/blob/master/docs/index.md). For example, the following code would verify a payment request:
+There are many examples of how to use it on the developer guide [section for payment protocol](https://github.com/Bitcoin-com/bitcore-payment-protocol/blob/master/docs/index.md). For example, the following code would verify a payment request:
 
 ```javascript
 var PaymentProtocol = require('bitcore-payment-protocol');
