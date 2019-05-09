@@ -803,7 +803,8 @@ describe('PaymentProtocol', function() {
       trust.caName.should.equal('Go Daddy Class 2 CA');
       trust.chainVerified.should.equal(true);
 
-      // Verify that expiration will fail verification (cert expires in april 2016)
+      // Verify that expiration will fail verification (cert expired in april 2016)
+      // chainVerified will be false unless non-expired cert is added
       clock.restore();
       var verified2 = pr.x509Verify();
       verified2.should.equal(false);
@@ -880,9 +881,9 @@ describe('PaymentProtocol', function() {
 
       var trust = pr.x509Verify(true);
 
-      // Verify Signature
+      // Verify Signature will fail because chainVerified fails (expired cert)
       var verified = pr.x509Verify();
-      verified.should.equal(true);
+      verified.should.equal(false);
 
       // Verify Signature with trust properties
       var trust = pr.x509Verify(true);
@@ -891,7 +892,7 @@ describe('PaymentProtocol', function() {
       trust.verified.should.equal(true);
       trust.caTrusted.should.equal(true);
       trust.caName.should.equal('Go Daddy Class 2 Certification Authority');
-      trust.chainVerified.should.equal(true);
+      trust.chainVerified.should.equal(false);
 
       // PaymentDetails
       details = PaymentProtocol.PaymentDetails.decode(details);
